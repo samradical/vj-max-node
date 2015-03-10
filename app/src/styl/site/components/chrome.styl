@@ -1,0 +1,20 @@
+/**
+ * Chrome
+ */
+
+.Chrome {
+	position: relative;
+	max-width: var( --chrome-max-width);
+	background-color: var(--color-grey-dark);
+	margin: 0 auto;
+	min-height: 100%;
+	overflow: hidden;
+
+	.no-narrow & {
+		padding-top: var(--header-height);
+	}
+	
+	.narrow & {
+		padding-top: var(--header-height-narrow);
+	}
+}

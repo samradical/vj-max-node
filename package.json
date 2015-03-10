@@ -1,0 +1,10 @@
+{
+	"name": "max-seven",
+	"version": "0.0.1",
+	"description": "",
+	"main": "app://radmix/index.html",
+	"author": "samelie",
+	"devDependencies": {
+		"osc":"latest"
+	}
+}

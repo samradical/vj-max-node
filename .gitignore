@@ -1,0 +1,17 @@
+npm-debug.log
+
+*.mp4
+*.ogv
+*.webm
+*.ogg
+*.mp3
+*.wav
+*.zip
+*.flv
+
+node_modules/**/*
+app/app.nw
+app/node_modules/**/*
+app/assets/vendor/**/*
+app/src/js/app/node/node_modules/**/*
+.DS_Store
