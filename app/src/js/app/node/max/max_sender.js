@@ -24,6 +24,12 @@ var MAX_SENDER = {
 	readSecond:function(path){
 		sender.send('admin/readSecond', 's', [path]);
 	},
+	readThird:function(path){
+		sender.send('admin/readThird', 's', [path]);
+	},
+	readFourth:function(path){
+		sender.send('admin/readFourth', 's', [path]);
+	},
 	bpm:function(data){
 		sender.send('admin/bpm', 'f', [data['bpm']]);
 	}

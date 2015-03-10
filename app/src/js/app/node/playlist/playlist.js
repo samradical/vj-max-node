@@ -87,6 +87,7 @@ var Playlist = (function() {
 	}
 
 	function _deleteVideoFile(vo) {
+		//dont delete user videos
 		if(vo['type'] === 'user'){
 			return;
 		}
@@ -137,8 +138,10 @@ var Playlist = (function() {
 					max.sender.readSecond(vo['absolutePath']);
 					break;
 				case 2:
+					max.sender.readThird(vo['absolutePath']);
 					break;
 				case 3:
+					max.sender.readFourth(vo['absolutePath']);
 					break;
 			}
 			vo['active'] = true;

@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 201.0, 94.0, 708.0, 772.0 ],
+		"rect" : [ 397.0, 286.0, 708.0, 772.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -4781,7 +4781,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 834.0, 118.0, 572.0, 554.0 ],
+						"rect" : [ 834.0, 118.0, 1092.0, 578.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4811,11 +4811,61 @@
 						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-13",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 613.0, 146.0, 79.0, 22.0 ],
+									"style" : "",
+									"text" : "s readFourth"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 613.0, 107.0, 136.0, 22.0 ],
+									"style" : "",
+									"text" : "route admin/readFourth"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 446.0, 146.0, 71.0, 22.0 ],
+									"style" : "",
+									"text" : "s readThird"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 446.0, 107.0, 129.0, 22.0 ],
+									"style" : "",
+									"text" : "route admin/readThird"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-11",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 459.0, 143.0, 43.0, 22.0 ],
+									"patching_rect" : [ 807.0, 139.0, 43.0, 22.0 ],
 									"style" : "",
 									"text" : "s bpm"
 								}
@@ -4828,7 +4878,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 459.0, 105.0, 101.0, 22.0 ],
+									"patching_rect" : [ 807.0, 101.0, 101.0, 22.0 ],
 									"style" : "",
 									"text" : "route admin/bpm"
 								}
@@ -4840,7 +4890,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 286.0, 143.0, 85.0, 22.0 ],
+									"patching_rect" : [ 292.0, 146.0, 85.0, 22.0 ],
 									"style" : "",
 									"text" : "s readSecond"
 								}
@@ -4865,7 +4915,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 286.0, 104.0, 142.0, 22.0 ],
+									"patching_rect" : [ 292.0, 107.0, 142.0, 22.0 ],
 									"style" : "",
 									"text" : "route admin/readSecond"
 								}
@@ -4916,7 +4966,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 299.0, 179.0, 150.0, 74.0 ],
+									"patching_rect" : [ 298.0, 217.0, 150.0, 74.0 ],
 									"style" : "",
 									"text" : "API:\n\n- create (patcherName)\n- readFirst (videoPath)\n- readSecond (videoPath)"
 								}
@@ -4974,7 +5024,43 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"disabled" : 0,
+									"hidden" : 0,
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-13", 0 ],
+									"disabled" : 0,
+									"hidden" : 0,
+									"source" : [ "obj-14", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"disabled" : 0,
+									"hidden" : 0,
+									"source" : [ "obj-16", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-12", 0 ],
+									"disabled" : 0,
+									"hidden" : 0,
+									"source" : [ "obj-16", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
 									"source" : [ "obj-16", 0 ]
@@ -5419,10 +5505,6 @@
 
 			}
  ],
-		"parameters" : 		{
-
-		}
-,
 		"dependency_cache" : [ 			{
 				"name" : "rad-controller.js",
 				"bootpath" : "~/Dropbox/Max/_rad",

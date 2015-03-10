@@ -14,7 +14,7 @@ var PLAYLIST_CONFIG = {
 	DESTINATION: '/Users/samelie/Dropbox/Max/_rad/videos/vines/',
 	defaultVineTag:'fail',
 	length:50,
-	downloadBuffer:4
+	downloadBuffer:6
 }
 
 module.exports = PLAYLIST_CONFIG;
