@@ -57,7 +57,13 @@ var Playlist = (function() {
 			if (vo['active']) {
 				vo['timeRemaining'] -= (config.UPDATE_INTERVAL * 0.001);
 				if (vo['timeRemaining'] < 0) {
-					_onVideoComplete(vo);
+					vo['loops']--;
+					if(vo['loops'] === 0){
+						_onVideoComplete(vo);
+					}else{
+						vo['timeRemaining'] = vo['duration'];
+						console.log("Looped: ", vo['name']);
+					}
 				}
 			}
 		}, this);
@@ -127,9 +133,13 @@ var Playlist = (function() {
 
 	function _activateItem(index) {
 			var vo = playlist[index];
+			if(!vo['absolutePath']){
+				//not finished yet
+				return;
+			}
 			activeVOs[index] = vo;
 			activeVOs[index]['index'] = index;
-			console.log("Index:", index, "Name: ", vo['name']);
+			console.log("Index:", index, "Name: ", vo['absolutePath']);
 			switch (index) {
 				case 0:
 					max.sender.readFirst(vo['absolutePath']);

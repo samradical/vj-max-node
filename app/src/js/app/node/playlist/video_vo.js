@@ -6,7 +6,7 @@ var VIDEO_VO = {
 	name:undefined,
 	duration:undefined, //seconds
 	timeRemaining:undefined,	
-	loops:1,
+	loops:3,
 	playbackRate:1,
 	userVideo:false,
 	active:false
