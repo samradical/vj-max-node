@@ -17,6 +17,7 @@
     	"fluent-ffmpeg":"latest",
     	"ws":"latest",
         "ytdl-core":"latest",
-        "connect-busboy":"latest"
+        "connect-busboy":"latest",
+        "fs.extra":"latest"
 	}
 }

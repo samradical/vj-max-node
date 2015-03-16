@@ -23,7 +23,8 @@
 		"templates": "./assets/js/templates.js",
 		"datgui": "./assets/vendor/dat-gui/build/dat.gui.min.js",
 		"backboneRouting": "./assets/vendor/backbone-query-parameters/backbone.queryparams.js",
-		"q": "./assets/vendor/q/q.js"
+		"q": "./assets/vendor/q/q.js",
+		"signals": "./assets/vendor/signals/dist/signals.min.js"
 	},
 	"browserify": {
 		"transform": [
@@ -34,8 +35,9 @@
 		"jquery": "$",
 		"lodash": "_",
 		"datgui": "global:datgui",
-		"eventie": "eventie",
-		"eventEmitter": "EventEmitter",
+		"signals": {
+			"exports": "signals"
+		},
 		"imagesloaded": {
 			"exports": "IMG",
 			"depends": ["eventie", "eventEmitter"]
@@ -92,21 +94,23 @@
 		"vinyl-source-stream": "^0.1.1",
 		"connect-history-api-fallback": "^0.0.4",
 		"collections": "^1.2.1",
-		"youtube-dl":"latest",
-		"ytdl-core":"latest",
-    	"request":"latest",
-    	"lodash":"latest",
-    	"q":"latest",
-    	"shelljs":"latest",
-    	"node-dir":"latest",
-    	"node-webkit-builder":"latest",
-    	"fluent-ffmpeg":"latest",
-    	"exec":"latest",
-    	"express":"latest",
-    	"ect":"latest",
-    	"cors": "*",
-    	"socket.io":"latest",
-    	"omgosc":"latest",
-    	"ws":"latest"
+		"youtube-dl": "latest",
+		"ytdl-core": "latest",
+		"request": "latest",
+		"lodash": "latest",
+		"q": "latest",
+		"shelljs": "latest",
+		"node-dir": "latest",
+		"node-webkit-builder": "latest",
+		"fluent-ffmpeg": "latest",
+		"exec": "latest",
+		"express": "latest",
+		"ect": "latest",
+		"cors": "*",
+		"socket.io": "latest",
+		"omgosc": "latest",
+		"ws": "latest",
+		"connect-busboy":"latest",
+		"fs.extra":"latest"
 	}
 }

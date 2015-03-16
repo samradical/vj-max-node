@@ -23,7 +23,8 @@ App.module('AppController', function(AppController, App, Backbone, Marionette, $
 		},
 
 		createViews: function() {
-			
+			this.appView = new App.Views.App();
+			App.Regions.show(App.Constants.REGIONS.APP, this.appView);
 		},
 
 		onHashChanged: function(params) {

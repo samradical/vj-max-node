@@ -10,21 +10,25 @@ App.module('Regions', function(Regions, App, Backbone, Marionette, $, _) {
 		initialize: function() {
 			// define regions
 			var data = {};
-			data[App.Constants.REGIONS.CONTROLS] = '#controls-region';
-			data[App.Constants.REGIONS.SEARCH] = '#search-region';
-			data[App.Constants.REGIONS.RESPONSE] = '#response-region';
+			data[App.Constants.REGIONS.APP] = '#app-region';
 			this.addRegions(data);
 		}
-
 	});
 
 	// helpers
-	Regions.showInRegion = function(regionId, view) {
+	Regions.show = function(regionId, view) {
 		if (!view) return;
 		var region = Regions.instance.get(regionId);
 		if (region) {
 			region.show(view);
 		}
+	};
+
+	Regions.add = function(constant, selector) {
+		if (!Regions.instance) return;
+		var r = {};
+		r[constant] = selector;
+		Regions.instance.addRegions(r);
 	};
 
 	// instance

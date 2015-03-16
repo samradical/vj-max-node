@@ -7,29 +7,26 @@ var MAX = {
 	patches: {},
 	requirements:require('./max_requirements'),
 	init: function() {
-		var defer = Q.defer();
-		var self = this;
-		this.requirements.getRequirements().then(function(patchesRequirements){
-			self.patches = patchesRequirements;
-			defer.resolve(self.patches);
-		});
-		return defer.promise;
+		return this._getRequirements();
 	},
-	/*getPatches:function(){
-		var patches;
-		if(!_.isEmpty(this.patches)){
-			patches = this.patches;
-		}else{
-			var hasLoaded = false;
-			while(!hasLoaded){
-				if(!_.isEmpty(this.patches)){
-					patches = this.patches;
-					hasLoaded = true;
-				}
-			}
+	getPatches:function(){
+		if(this.patches){
+			return Q(this.patches);
 		}
-		return patches;
-	},*/
+		return this._getRequirements();
+	},
+	_getRequirements:function(){
+		var self = this;
+		return this.requirements.getRequirements().then(function(patchesRequirements){
+			self.patches = patchesRequirements;
+			return self.patches;
+		}).catch(function(err){
+			console.log(err);
+		});
+	},
+	newPatch:function(name){
+		this.sender.create(name);
+	},
 	sender: require('./max_sender')
 };
 

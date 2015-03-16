@@ -1,18 +1,53 @@
-.PlaylistCollection{
-	
+/**
+ * Playlist
+ */
+
+.Playlist {
+	position: relative;
 }
 
-.Playlist-item{
-	background-color: rgb(89,158,167);
-	margin-bottom: 0.1em;
+
+.PlaylistItem {
+	position: relative;
+	background-color: var(--color-gold-dark);
+	width: 100%;
+	height: var(--playlistitem-height);
+	border-bottom: 1px solid var(--color-grey-dark);
+	cursor: pointer;
+	font-size: 0;
+	&:hover{
+		background-color: var( --color-grey-dark);
+		color: var(--color-gold-dark);
+	}
+
+	img{
+		position: relative;
+		width: var(--playlistitem-thumbwidth);
+		height: 100%;
+		display: inline-block;
+		vertical-align: top;
+	}
 }
 
-.Playlist-name{
+.PlaylistItem-info{
+	position: relative;
 	display: inline-block;
-	background-color: rgb(125,89,167);
+	font-size: var(--fs-root-large);
+	width: calc(100% - var(--playlistitem-thumbwidth));
+	height: 100%;
+	padding: 5px;
+	& span {
+	}
 }
 
-.Playlist-id{
-	display: inline-block;
-	background-color: rgb(89,167,120);
+.PlaylistItem-progress{
+	position: absolute;
+	height: 100%;
+	top:0;
+	left:var(--playlistitem-thumbwidth);
+	width: calc(100% - var(--playlistitem-thumbwidth));
+	max-width: calc(100% - var(--playlistitem-thumbwidth));
+	background-color: var(--playlistitem-progresscolor);
+	transition: width 0.05s linear;
+
 }

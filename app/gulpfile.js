@@ -23,6 +23,7 @@ var src = './src',
 	jsSrc = src + '/js/',
 	jsIndex = 'main.js',
 	jsDist = distAssets + '/js/',
+	jsonDist = distAssets + '/json/',
 	jsBundle = 'bundle.js',
 	cssSrc = src + '/styl/',
 	cssIndex = 'main.css',
@@ -258,13 +259,16 @@ gulp.task('csslint', function() {
 
 gulp.task('copyMax', function() {
 	return gulp.src(["../max-modules/**/*"])
-		.pipe(gulp.dest(maxModules));
+		.pipe(gulp.dest(maxModules))
+		.pipe(gulp.dest(jsSrc+'app/node/max-modules/'))
+		.pipe(gulp.dest(jsonDist+'max-modules/'));
 });
 
 gulp.task('copyServer', function() {
 	return gulp.src([
 			jsSrc + 'app/node/**/*',
 			'!' + jsSrc + 'app/node/node_modules/**/*',
+			'!' + jsSrc + 'app/node/labs/**/*',
 			'!' + jsSrc + 'app/node/package.json'
 		])
 		.pipe(gulp.dest(dist));
@@ -277,15 +281,20 @@ gulp.task('packageApp', function() {
 			'max/**/*',
 			'views/**/*',
 			'youtube/**/*',
+			'vine/**/*',
+			'ffmpeg/**/*',
 			'helper/**/*',
+			'playlist/**/*',
 			'node_modules/lodash/**/*',
 			'node_modules/node-dir/**/*',
 			'node_modules/q/**/*',
+			'node_modules/fs.extra/**/*',
 			'node_modules/request/**/*',
 			'node_modules/ytdl-core/**/*',
 			'node_modules/fluent-ffmpeg/**/*',
 			'node_modules/shelljs/**/*',
 			'node_modules/express/**/*',
+			'node_modules/connect-busboy/**/*',
 			'node_modules/socket.io/**/*',
 			'node_modules/omgosc/**/*',
 			'node_modules/ws/**/*',
@@ -304,6 +313,10 @@ gulp.task('cleanup', function() {
 	shelljs.exec('rm -rf express');
 	shelljs.exec('rm -rf max');
 	shelljs.exec('rm -rf views');
+	shelljs.exec('rm -rf vine');
+	shelljs.exec('rm -rf labs');
+	shelljs.exec('rm -rf ffmpeg');
+	shelljs.exec('rm -rf playlist');
 	shelljs.exec('rm -rf youtube');
 	shelljs.exec('rm -rf helper');
 	shelljs.exec('rm -rf max-modules');
@@ -337,7 +350,7 @@ gulp.task('buildApp', function() {
 gulp.task('watch', function() {
 	gulp.watch(cssSrc + '**/*.{styl,css}', ['css']);
 	gulp.watch(dist + '/*.html', ['html']);
-	gulp.watch(jsSrc + '**/*.js', ['project-scripts', 'copyServer']);
+	gulp.watch(jsSrc + '**/*.js', ['project-scripts']);
 	gulp.watch(src + '/ejs/*.ejs', ['templates']);
 });
 
@@ -345,11 +358,11 @@ gulp.task('watch', function() {
 gulp.task('vendor', ['vendor-scripts-release']);
 gulp.task('vendor-dev', ['vendor-scripts']);
 
-gulp.task('app', ['copyMax','copyServer', 'packageApp', 'cleanup']);
+gulp.task('app', ['copyMax','copyServer', 'packageApp']);
 gulp.task('build-app', ['copyServer', 'buildApp']);
 
 gulp.task('build', ['project-scripts-release', 'templates', 'css']);
-gulp.task('build-dev', ['project-scripts', 'templates', 'css', 'copyServer']);
+gulp.task('build-dev', ['project-scripts', 'templates', 'css', 'copyServer', 'copyMax']);
 
 //DEFAULT
 gulp.task('default', ['watch', 'build-dev', 'connect']);

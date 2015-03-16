@@ -32,22 +32,7 @@ html {
   height: 100%;
   overflow-y: scroll;
   -ms-touch-action: none;
-  font-size: 100%;
-  @media --small {
-    font-size: 112.5%;
-  }
-  @media --medium {
-    font-size: 127.5%;
-  }
-  @media --large {
-    font-size: 137.5%;
-  }
-  @media --x-large {
-    // font-size: 157.5%;
-  }
-  @media --xx-large {
-    // font-size: 200.0%;
-  }
+  font-size: var(--fs-root-large);
 }
 
 .ie{

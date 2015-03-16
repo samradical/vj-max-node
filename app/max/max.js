@@ -1,69 +1,33 @@
 var Q = require('q');
 var fs = require('fs');
-var MAX_PATH = './max-modules/';
+var _ = require('lodash');
+//var MAX_PATH = './max-modules/';
 
 var MAX = {
 	patches: {},
+	requirements:require('./max_requirements'),
 	init: function() {
+		return this._getRequirements();
+	},
+	getPatches:function(){
+		if(this.patches){
+			return Q(this.patches);
+		}
+		return this._getRequirements();
+	},
+	_getRequirements:function(){
 		var self = this;
-		var defer = Q.defer();
-		fs.readdir(MAX_PATH, function(err, files) {
-			if (err) {
-				console.log("ERROR READING MAX DIR");
-				console.log(err);
-			} else {
-				self._storePatches(files);
-			}
-			defer.resolve(files);
+		return this.requirements.getRequirements().then(function(patchesRequirements){
+			self.patches = patchesRequirements;
+			return self.patches;
+		}).catch(function(err){
+			console.log(err);
 		});
 	},
-	_storePatches: function(files) {
-		_.each(files, function(name) {
-			this.patches[name] = {};
-		}, this);
-		this._storePatchRequirements();
+	newPatch:function(name){
+		this.sender.create(name);
 	},
-	_storePatchRequirements: function() {
-		var self = this;
-		_.forIn(this.patches, function(value, key) {
-			self._getMaxPatch(key).then(function(jsonPatch) {
-				var boxes = jsonPatch['patcher']['boxes'];
-				var requirements = [];
-				console.log(boxes);
-				_.each(boxes, function(obj) {
-					var box = obj['box'];
-					//using inlets
-					var maxclass = box['maxclass'];
-					if (maxclass === 'inlet') {
-						if (box['varname']) {
-							console.log(box['varname']);
-							requirements.push(box['varname']);
-						}
-					}
-				});
-				self.patches[key]['requirements'] = requirements;
-				console.log(self.patches);
-			});
-		}, this);
-	},
-	_getMaxPatch: function(name) {
-		var defer = Q.defer();
-		fs.readFile(MAX_PATH + name, {
-			encoding: 'utf-8'
-		}, function(err, data) {
-			if (!err) {
-				defer.resolve(JSON.parse(data));
-			} else {
-				console.log("Problem reading max patch!");
-				console.log(err);
-			}
-
-		});
-		return defer.promise;
-	},
-	sender: require('./max_sender'),
+	sender: require('./max_sender')
 };
-
-MAX.init();
 
 module.exports = MAX;

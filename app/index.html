@@ -27,8 +27,10 @@
 	<link href="assets/css/styles.css" rel="stylesheet">
 	<!-- JS TOP -->
 	<script src="assets/vendor/dat-gui/build/dat.gui.min.js"></script>
+	<script src="assets/vendor-custom/socket.io.js"></script>
 	<script>
 		var BASE_PATH = '/';
+		var IS_APP = false;
 		// var QUERY = '';
 		// var USER_LOCATION = 'London';
 		// var USER_WEATHER = 'snow';
@@ -46,10 +48,7 @@
 </head>
 <!--<body onload="onBodyLoad()">-->
 <body>
-	<div class="Chrome">
-		<div class="Controls" id="controls-region"></div>
-		<div class="Search" id="search-region"></div>
-		<div class="Response" id="response-region"></div>
+	<div class="Chrome" id="app-region">
 	</div>
 
 	<!-- JS BOTTOM -->
@@ -58,7 +57,18 @@
 	<script src="assets/js/templates.js"></script>
 	<script src="assets/js/bundle.js"></script>-->
 </body>
-<script src="server.js"></script>
+<script>
+	if(IS_APP){
+		var nodeServer = document.createElement('script');
+		nodeServer.src = 'server.js';
+		document.body.appendChild(nodeServer);
+	}
+</script>
+<script>
+	if(!IS_APP){
+		var SOCKET = io('http://localhost:3000');
+	}
+</script>
 <script src="assets/js/templates.js"></script>
 <script src="assets/js/bundle.js"></script>
 </html>

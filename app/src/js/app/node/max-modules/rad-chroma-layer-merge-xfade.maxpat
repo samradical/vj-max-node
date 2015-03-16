@@ -146,7 +146,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 53.0, 24.0, 30.0, 30.0 ],
-					"style" : ""
+					"style" : "",
+					"varname" : "videoOne"
 				}
 
 			}

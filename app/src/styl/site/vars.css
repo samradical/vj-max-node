@@ -46,6 +46,11 @@ NAV = 3
   --color-pinterest:         #cd2227;
   --color-text-dark:         #333b41;
 
+  /* playlist */
+  --playlistitem-thumbwidth:     140px;
+  --playlistitem-height:     106px;
+  --playlistitem-progresscolor:     #b4497e;
+
   /* fonts */
   --ff-proxima-semibold:  'ProximaNova-Semibold', sans-serif;
   --ff-proxima-bold:      'ProximaNova-Bold', sans-serif;
@@ -54,6 +59,10 @@ NAV = 3
   --ff-proxima-lightit:   'ProximaNova-LightIt', sans-serif;
   --ff-proxima-extrabold: 'ProximaNova-ExtraBold', sans-serif;
   --ff-icon:              'icomoon', sans-serif;
+
+  /* font sizes */
+  --fs-root: 10px;
+  --fs-root-large: 12px;
 
   /* media queries: big breakpoints */
   breakpoint---small:     screen and (min-width: 38em);

@@ -464,7 +464,9 @@ NAV = 3
 :root {
   /* paths */
   /* colours */
+  /* playlist */
   /* fonts */
+  /* font sizes */
   /* media queries: big breakpoints */
   /* measurement */
   /* transition */
@@ -495,25 +497,7 @@ html {
   height: 100%;
   overflow-y: scroll;
   -ms-touch-action: none;
-  font-size: 100%;
-}
-
-@media screen and (min-width: 38em) {
-  html {
-    font-size: 112.5%;
-  }
-}
-
-@media screen and (min-width: 60em) {
-  html {
-    font-size: 127.5%;
-  }
-}
-
-@media screen and (min-width: 78em) {
-  html {
-    font-size: 137.5%;
-  }
+  font-size: 12px;
 }
 
 .ie {
@@ -903,87 +887,99 @@ button {
   overflow: hidden;
 }
 
-.no-narrow .Chrome {
-  padding-top: 70px;
+.App {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  background-color: #3a383d;
+  margin: 0 auto;
+  min-height: 100%;
+  overflow: hidden;
 }
 
-.narrow .Chrome {
-  padding-top: 53px;
+.AppMaxModulesRegion {
+  float: left;
+  width: 30%;
 }
 
-.Controls {
+.AppPlaylistRegion {
+  float: left;
+  width: 50%;
+}
+
+.MaxModules {
   position: relative;
 }
 
-.Controls-directory {
+.MaxPatch {
   position: relative;
-  display: inline-block;
+  background-color: #e4a700;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #3a383d;
+  cursor: pointer;
+}
+
+.MaxPatch:hover {
+  background-color: #3a383d;
+  color: #e4a700;
+}
+
+.MaxPatch-name {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+}
+
+.Playlist {
+  position: relative;
+}
+
+.PlaylistItem {
+  position: relative;
+  background-color: #e4a700;
+  width: 100%;
+  height: 106px;
+  border-bottom: 1px solid #3a383d;
+  cursor: pointer;
+  font-size: 0;
+}
+
+.PlaylistItem:hover {
+  background-color: #3a383d;
+  color: #e4a700;
+}
+
+.PlaylistItem img {
+  position: relative;
   width: 140px;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
 }
 
-.Controls-directory div {
-  font-size: 14px;
-}
-
-.Controls-directory input[type="file"] {
+.PlaylistItem-info {
+  position: relative;
   display: inline-block;
   font-size: 12px;
-  padding: 0.1em;
-}
-
-.dg.main {
-  display: inline-block;
-}
-
-.Response {
-  position: relative;
-  margin-top: 40px;
-  width: 100%;
-}
-
-.Playlist-item {
-  background-color: #599ea7;
-  margin-bottom: 0.1em;
-}
-
-.Playlist-name {
-  display: inline-block;
-  background-color: #7d59a7;
-}
-
-.Playlist-id {
-  display: inline-block;
-  background-color: #59a778;
-}
-
-.Button {
-  cursor: pointer;
-  display: inline-block;
+  width: -webkit-calc(100% - 140px);
+  width: calc(100% - 140px);
   height: 100%;
-  padding-top: 0.05em;
-  padding-bottom: 0.05em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  text-align: center;
+  padding: 5px;
 }
 
-.Button-playlist {
-  background-color: #c05e38;
-  color: #292828;
-}
-
-.Status {
-  display: inline-block;
+.PlaylistItem-progress {
+  position: absolute;
   height: 100%;
-  padding-top: 0.05em;
-  padding-bottom: 0.05em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  text-align: center;
-  color: #292828;
-  background-color: #b45938;
-}
-
-.Status.complete {
-  background-color: #28c038;
+  top: 0;
+  left: 140px;
+  width: -webkit-calc(100% - 140px);
+  width: calc(100% - 140px);
+  max-width: -webkit-calc(100% - 140px);
+  max-width: calc(100% - 140px);
+  background-color: #b4497e;
+  -webkit-transition: width 0.05s linear;
+  transition: width 0.05s linear;
 }

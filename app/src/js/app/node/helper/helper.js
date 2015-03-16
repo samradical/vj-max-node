@@ -3,7 +3,7 @@ var Q = require('q');
 var MAX_PATH = './max-modules/';
 
 var HELPER = {
-	getMaxPatchNames: function() {
+	/*getMaxPatchNames: function() {
 		var defer = Q.defer();
 		fs.readdir(MAX_PATH, function(err, files) {
 			if (err) {
@@ -27,7 +27,7 @@ var HELPER = {
 
 		});
 		return defer.promise;
-	}
+	}*/
 };
 
 module.exports = HELPER;

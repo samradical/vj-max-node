@@ -11,23 +11,28 @@ App.module('Constants', function(Constants, App, Backbone, Marionette, $, _) {
 			GET_PLAYLISTS_EVENT:"controls:get:playlists:event"
 		},
 
+		PATHS:{
+			JSON:'assets/json/',
+			IMAGES:'assets/img/'
+		},
 
 		EVENTS:{
 			PRELOADED:'events:preloaded',
 
-			KEYWORD_SEARCH:'events:keyword:search'
+			KEYWORD_SEARCH:'events:keyword:search',
+			SET_PLAYLIST:'events:set:playlist'
 		},
 
 		REGIONS: {
-			CONTROLS: 'controls',
-			SEARCH: 'search',
-			RESPONSE: 'response'
+			APP: 'app',
+
+			MAX_MODULE:"max-module",
+			PLAYLIST:"playlist"
 		},
 
 		REQRES: {
-			SAVE_PLAYLISTS: 'entities:save:playlists',
-			SAVE_PLAYLIST_TRACKS: 'entities:save:playlists:tracks',
-			SAVE_TINYSONG: 'entities:save:tinysong'
+			PLAYLIST: 'reqres:playlist',
+			MAX_PATCHES: 'reqres:maxpatches'
 		}
 	});
 
