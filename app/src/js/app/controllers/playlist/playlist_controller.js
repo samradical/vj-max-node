@@ -7,30 +7,38 @@ App.module('Controllers', function(Controllers, App, Backbone, Marionette, $, _)
 		collection:undefined,
 		initialize: function() {
 			console.log(0, "playlistController");
+			//from playlist_entity
 			App.on(App.Constants.EVENTS.SET_PLAYLIST, this.setCollection, this);
+			//from playlist controls
+			App.on(App.Constants.EVENTS.PLAYLIST_UPDATE_VO, this.updateServerVO, this);
 		},
 		setView: function(view) {
 			this.view = view;
 			if(this.collection){
-				this.setCollection();
+				this.view.collection = this.collection;
 			}
 		},
 		setCollection: function(collection) {
-			var self = this;
-			this.collection = collection || this.collection;
-			if (!this.view) {
-				return;
+			this.collection = collection;
+			if(this.view){
+				this.view.collection = this.collection;
 			}
-			if (this.collection) {
-				self.view.collection = this.collection;
-				self.view.render();
-			} else {
-				App.request(App.Constants.REQRES.PLAYLIST).then(function(collection) {
-					self.view.collection = this.collection;
-					self.view.render();
-				}).done();
+		},
+
+
+		updateServerVO:function(model){
+			var vo = model.toJSON();
+			console.log(vo);
+			if(IS_APP){
+				Controllers.Server.updateVO(vo);
+			}else{
+				Controllers.Socket.updateVO(vo);
 			}
 		}
+				/*App.request(App.Constants.REQRES.PLAYLIST).then(function(collection) {
+					self.view.collection = this.collection;
+					self.view.render();
+				}).done();*/
 	});
 
 	Controllers.Playlist.instance = new App.Controllers.Playlist();

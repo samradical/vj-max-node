@@ -465,7 +465,9 @@ NAV = 3
   /* paths */
   /* colours */
   /* playlist */
+  /* playlist controls */
   /* fonts */
+  /* sizes */
   /* font sizes */
   /* media queries: big breakpoints */
   /* measurement */
@@ -900,12 +902,12 @@ button {
 
 .AppMaxModulesRegion {
   float: left;
-  width: 30%;
+  width: 20%;
 }
 
 .AppPlaylistRegion {
   float: left;
-  width: 50%;
+  width: 30%;
 }
 
 .MaxModules {
@@ -941,15 +943,11 @@ button {
   position: relative;
   background-color: #e4a700;
   width: 100%;
-  height: 106px;
+  min-width: 300px;
+  min-height: 106px;
   border-bottom: 1px solid #3a383d;
   cursor: pointer;
   font-size: 0;
-}
-
-.PlaylistItem:hover {
-  background-color: #3a383d;
-  color: #e4a700;
 }
 
 .PlaylistItem img {
@@ -963,16 +961,18 @@ button {
 .PlaylistItem-info {
   position: relative;
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
   width: -webkit-calc(100% - 140px);
   width: calc(100% - 140px);
   height: 100%;
   padding: 5px;
+  pointer-events: none;
 }
 
 .PlaylistItem-progress {
   position: absolute;
-  height: 100%;
+  height: 106px;
+  max-height: 106px;
   top: 0;
   left: 140px;
   width: -webkit-calc(100% - 140px);
@@ -982,4 +982,51 @@ button {
   background-color: #b4497e;
   -webkit-transition: width 0.05s linear;
   transition: width 0.05s linear;
+}
+
+.PlaylistItem-progress:hover {
+  background-color: #3a383d;
+  color: #e4a700;
+}
+
+#loop-region {
+  width: 100%;
+  height: 100%;
+}
+
+.PlaylistItemControls {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: none;
+  background-color: #ACB5EB;
+}
+
+.is-active .PlaylistItemControls {
+  display: block;
+}
+
+.Controls {
+  text-align: center;
+  font-size: 12px;
+}
+
+.ControlsIcon {
+  font-size: 26px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 5px;
+  color: #ACEBD9;
+}
+
+.ControlsIcon:hover {
+  color: #EBACBE;
+}
+
+.ControlsLoop {
+  height: 100%;
+  width: 100px;
+  background-color: #3A5C4B;
 }

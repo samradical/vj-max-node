@@ -1,7 +1,7 @@
 // app dependencies
 var App = require('../../app');
 var Q = require('q');
-
+var MAX_LENGTH = 50;
 // define module
 App.module('Entities', function(Entities, App, Backbone, Marionette, $, _) {
 
@@ -28,34 +28,58 @@ App.module('Entities', function(Entities, App, Backbone, Marionette, $, _) {
 		model: Entities.Playlist.Model
 	});
 
-	Entities.Playlist.setActiveVOs = function(activeVOs) {
+	Entities.Playlist.init = function() {
+		var models = [];
+		for (var i = 0; i < MAX_LENGTH; i++) {
+			models.push(new Entities.Playlist.Model());
+		}
+		Entities.Playlist.collection = new Entities.Playlist.Collection(models);
+		App.trigger(App.Constants.EVENTS.SET_PLAYLIST, Entities.Playlist.collection);
+	};
+
+	Entities.Playlist.updateVO = function(vo) {
+		//thumbnails and stuff
+		var model = Entities.Playlist.collection.where({name: vo['name']})[0];
+		vo['render'] = true;
+		model.set(vo);
+		//model.set('render', false);
+	};
+
+
+	Entities.Playlist.updateActiveVOs = function(activeVOs) {
 		var model;
+		//return;
 		_.each(activeVOs, function(vo) {
+			vo['render'] = false;
 			model = Entities.Playlist.collection.at(vo['index']);
-			model.set('timeRemaining', vo['timeRemaining']);
+			model.set(vo);
 		});
 	};
 
 	Entities.Playlist.setPlaylist = function(playlist) {
-		var models = [];
-		_.each(playlist, function(item) {
-			models.push(new Entities.Playlist.Model(item));
+		//var models = [];
+
+		_.each(playlist, function(vo, i) {
+			vo['render'] = true;
+			var model = Entities.Playlist.collection.at(i);
+			model.set(vo);
+			/*_.forIn(vo, function(value, key){
+				model.set(key, value);
+			});*/
+			/*if(i === 0){
+				console.log(model);
+			}
+			_.forIn(vo, function(value, key){
+				model.set(key, value);
+			});*/
 		});
-		/*if (!Entities.Playlist.collection) {
-			_.each(playlist, function(item) {
-				models.push(new Entities.Playlist.Model(item));
-			});
-			Entities.Playlist.collection = new Entities.Playlist.Collection(models);
-		} else {
-			_.each(playlist, function(item, index) {
-				models.push(new Entities.Playlist.Model(item));
-			});
-			Entities.Playlist.collection.set(models, {
-				add: false
-			});
-		}*/
-		Entities.Playlist.collection = new Entities.Playlist.Collection(models);
-		App.trigger(App.Constants.EVENTS.SET_PLAYLIST, Entities.Playlist.collection);
+		/*_.each(playlist, function(item, i) {
+			var model = Entities.Playlist.collection.at(i);
+
+			models.push(new Entities.Playlist.Model(item));
+
+		});
+		Entities.Playlist.collection = new Entities.Playlist.Collection(models);*/
 	};
 
 	function _getPlaylist() {
@@ -79,6 +103,7 @@ App.module('Entities', function(Entities, App, Backbone, Marionette, $, _) {
 		}
 		return defer.promise;
 	}
+	Entities.Playlist.init();
 	App.reqres.setHandler(App.Constants.REQRES.PLAYLIST, _getPlaylist);
 });
 

@@ -22,6 +22,8 @@ var src = './src',
 	distAssets = dist + 'assets',
 	jsSrc = src + '/js/',
 	jsIndex = 'main.js',
+	iconSrc = src + '/glyphs/svg/',
+	iconDist = distAssets+'/icons/',
 	jsDist = distAssets + '/js/',
 	jsonDist = distAssets + '/json/',
 	jsBundle = 'bundle.js',
@@ -307,6 +309,7 @@ gulp.task('packageApp', function() {
 		.pipe(plugins.zip('app.nw'))
 		.pipe(gulp.dest('./'));
 });
+
 
 gulp.task('cleanup', function() {
 	shelljs.exec('rm server.js');

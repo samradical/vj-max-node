@@ -5,14 +5,24 @@ var THUMB_WIDTH = 106;
 var THUMB_HEIGHT = 140;
 // define module
 App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _) {
-	Playlist.Patch = Marionette.ItemView.extend({
+
+	Playlist.Item = Marionette.LayoutView.extend({
+		isActive:false,
+		controls: undefined,
+		progress: undefined,
 		progressEl: undefined,
+		regions: {
+			controlsRegion: '#controls-region'
+		},
 		template: JST['playlist_item'],
 		templateHelpers: {
 			thumbSrc: undefined
 		},
 		events: {
-			'click .MaxPatch-name': '_onClick'
+			'click img': '_onClick',
+			'click .PlaylistItem-progress': '_onClick',
+			'mouseover .PlaylistItem': '_onMouseOver',
+			'mouseout .PlaylistItem': '_onMouseOut'
 		},
 		initialize: function() {
 			this.clickSignal = new signals.Signal();
@@ -22,11 +32,19 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 		},
 
 		onRender: function() {
-			return App.Utils.renderViewAsRootEl(this);
+			this.progressEl = null;
+			this._updateProgress();
+			this._createControls();
 		},
 
 		onShow: function() {
-			this.progressEl = this.$el.find('.PlaylistItem-progress')[0];
+		},
+
+		_createControls: function() {
+			this.controls = new Playlist.Controls.Main({
+				model: this.model
+			});
+			this.controlsRegion.show(this.controls);
 		},
 
 		_calcTimePercent: function() {
@@ -43,26 +61,64 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 		},
 
 		_onModelChange: function() {
-			if (this.progressEl) {
-				this.progressEl.style.width = this._calcProgressElWidth() + 'px';
+			//only if its active update
+			var img = this.model.get('thumbnailPath') || 'default.jpg';
+			this.templateHelpers.thumbSrc = App.Constants.PATHS.IMAGES + img;
+			if (this.model.get('render')) {
+				this._modelChangeRender();
+			} else {
+				this._modelChangeUpdate();
 			}
+		},
+
+		_modelChangeUpdate: function() {
+			this.progress = this._calcProgressElWidth();
+			this._updateProgress();
+		},
+
+		_modelChangeRender: function() {
+			this.render();
+		},
+
+		_updateProgress: function() {
+			if (!this.progress) {
+				return;
+			}
+			if (!this.progressEl) {
+				this.progressEl = this.$el.find('.PlaylistItem-progress')[0];
+			}
+			this.progressEl.style.width = this.progress + 'px';
 		},
 
 		_onClick: function() {
-			this.clickSignal.dispatch(this.model.get('name'));
+			this._toggleControls();
+		},
+
+		_onMouseOver: function(e) {
+
+		},
+
+		_onMouseOut: function(e) {
+
+		},
+
+		_toggleControls: function() {
+			if(!this.isActive){
+				this.$el.addClass('is-active');
+			}else{
+				this.$el.removeClass('is-active');
+			}
+			this.isActive = !this.isActive;
 		},
 
 		onDestroy: function() {
-			if (!this.clickSignal) {
-				return;
-			}
 			this.clickSignal.dispose();
 			this.clickSignal = null;
 		}
 	});
 
 	Playlist.Collection = Marionette.CollectionView.extend({
-		childView: Playlist.Patch,
+		childView: Playlist.Item,
 		tagName: 'div',
 		className: 'Playlist',
 		initialize: function() {
@@ -78,7 +134,7 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 		onBeforeRemoveChild: function(child) {
 			child.clickSignal.remove(this._onChildClicked);
 		},
-		onRender: function() {
+		onShow: function() {
 			App.Storage.appPlaylistWidth = this.$el.width();
 		}
 	});

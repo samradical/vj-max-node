@@ -28,6 +28,7 @@ App.module('Views', function(Views, App, Backbone, Marionette, $, _) {
 			App.Regions.show(App.Constants.REGIONS.PLAYLIST, this.playlistView);
 
 		}
+
 	});
 });
 

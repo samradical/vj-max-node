@@ -51,6 +51,12 @@ NAV = 3
   --playlistitem-height:     106px;
   --playlistitem-progresscolor:     #b4497e;
 
+  /* playlist controls */
+  --playlistitem-loopcontrolscolor:     #3A5C4B;
+  --playlistitem-controlscolor:     #ACB5EB;
+  --playlistitem-iconcolor:     #ACEBD9;
+  --playlistitem-iconhovercolor:     #EBACBE;
+
   /* fonts */
   --ff-proxima-semibold:  'ProximaNova-Semibold', sans-serif;
   --ff-proxima-bold:      'ProximaNova-Bold', sans-serif;
@@ -60,9 +66,17 @@ NAV = 3
   --ff-proxima-extrabold: 'ProximaNova-ExtraBold', sans-serif;
   --ff-icon:              'icomoon', sans-serif;
 
+  /* sizes */
+
+  --s-playlist-controlsheight: 50px;
+
   /* font sizes */
   --fs-root: 10px;
   --fs-root-large: 12px;
+
+  --fs-playlist-info: 14px;
+  --fs-playlist-controls: 12px;
+  --fs-playlist-controlsicon: 26px;
 
   /* media queries: big breakpoints */
   breakpoint---small:     screen and (min-width: 38em);

@@ -10,14 +10,21 @@ App.module('Controllers', function(Controllers, App, Backbone, Marionette, $, _)
 			});
 
 			SOCKET.on('admin:playlist:update', function(activeVOs) {
-				App.Entities.Playlist.setActiveVOs(activeVOs);
+				App.Entities.Playlist.updateActiveVOs(activeVOs);
+			});
+
+			SOCKET.on('admin:playlist:updatevo', function(vo) {
+				App.Entities.Playlist.updateVO(vo);
 			});
 
 			SOCKET.on('handshake', function(data) {
 				SOCKET.emit('admin:connected', data);
 				console.log("Socket connected: ", data);
 			});
+		},
 
+		updateVO:function(vo){
+			SOCKET.emit('admin:updatevo', vo);
 		}
 	};
 

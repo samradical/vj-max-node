@@ -18,8 +18,10 @@ var PLAYLIST_CONFIG = {
 	THUMB_DESTINATION: '/Users/samelie/Dropbox/Max/_rad/app/assets/img/',
 	DESTINATION: '/Users/samelie/Dropbox/Max/_rad/videos/vines/',
 	defaultVineTag:'food',
-	length:50,
-	downloadBuffer:8
+	length:50, 
+	downloadBuffer:12,
+	controls:['loops', 'playbackRate'] //which VO properties can be changed
+
 }
 
 module.exports = PLAYLIST_CONFIG;

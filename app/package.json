@@ -85,6 +85,8 @@
 		"gulp-plumber": "^0.6.1",
 		"gulp-stylus": "~1.0.0",
 		"gulp-zip": "^2.0.2",
+		"gulp-iconfont": "^0.2.1",
+        "gulp-iconfont-css": "0.0.9",
 		"jshint-stylish": "^0.2.0",
 		"mocha": "^1.20.1",
 		"rework-breakpoints": "~0.6.0",

@@ -33,6 +33,10 @@ var SOCKET = function(expressServer) {
 		users[adminId].emit('admin:playlist:started', NodeServer.playlist.getPlaylist());
 	}
 
+	function onAdminUpdateVO(vo) {
+		NodeServer.playlist.updateVO(vo);
+	}
+
 	function userConnected(socket) {
 		users[socket.id] = socket;
 
@@ -41,6 +45,7 @@ var SOCKET = function(expressServer) {
 
 		//ADMIN
 		users[socket.id].on('admin:connected', onAdminConnected);
+		users[socket.id].on('admin:updatevo', onAdminUpdateVO);
 
 		users[socket.id].emit('handshake', {
 			id: users[socket.id].id

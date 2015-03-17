@@ -18,9 +18,9 @@ App.module('Constants', function(Constants, App, Backbone, Marionette, $, _) {
 
 		EVENTS:{
 			PRELOADED:'events:preloaded',
-
-			KEYWORD_SEARCH:'events:keyword:search',
-			SET_PLAYLIST:'events:set:playlist'
+			/*PLAYLIST*/
+			SET_PLAYLIST:'events:set:playlist',
+			PLAYLIST_UPDATE_VO:'events:playlist:update:vo'
 		},
 
 		REGIONS: {

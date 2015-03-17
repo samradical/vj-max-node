@@ -10,7 +10,7 @@ var Playlist = (function() {
 	var NodeServer = undefined;
 	//
 	var activeVOs = [];
-	var playlist = undefined;
+	var playlist = undefined; //array
 	var playlistReady = false;
 
 	var requirements = undefined;
@@ -61,14 +61,21 @@ var Playlist = (function() {
 			//if (vo['active']) {
 			vo['timeRemaining'] -= (config.UPDATE_INTERVAL * 0.001);
 			if (vo['timeRemaining'] < 0) {
-				vo['loops'] --;
-				//console.log(vo['loops'], _canComplete());
-				if (vo['loops'] === 0 && _canComplete()) {
-					_onVideoComplete(vo);
-				} else {
-					vo['loops'] = 1;
+				if (vo['loops'] === -1) {
 					vo['timeRemaining'] = vo['duration'];
-					console.log("Looped: ", vo['name']);
+					console.log("Looped ∞: ", vo['name']);
+				} else {
+					vo['loops'] --;
+					if (vo['loops'] <= 0 && _canComplete()) {
+						vo['loops'] = 0;
+						_onVideoComplete(vo);
+					} else {
+						if (!_canComplete()) {
+							vo['loops'] = 1;
+						}
+						vo['timeRemaining'] = vo['duration'];
+						console.log("Looped: ", vo['name']);
+					}
 				}
 			}
 		}, this);
@@ -115,7 +122,9 @@ var Playlist = (function() {
 	function _checkBuffer() {
 		for (var i = 0; i < config.downloadBuffer; i++) {
 			if (!playlist[i]['path']) {
-				_downloadVideo(playlist[i]);
+				_downloadVideo(playlist[i]).then(function(vo) {
+					_socketSendVO(vo);
+				}).done();
 			}
 		}
 	}
@@ -181,18 +190,22 @@ var Playlist = (function() {
 		});
 	}
 
-	function _socketSendPlaylist(){
+	function _socketSendPlaylist() {
 		NodeServer.express.emitAdmin('admin:playlist:started', playlist);
 	}
 
-	function _socketSendActiveVOs(){
+	function _socketSendActiveVOs() {
 		NodeServer.express.emitAdmin('admin:playlist:update', activeVOs);
 	}
-	//----------------
-	//PUBLIC
-	//----------------
 
-	function getPlaylist(){
+	function _socketSendVO(vo) {
+			NodeServer.express.emitAdmin('admin:playlist:updatevo', vo);
+		}
+		//----------------
+		//PUBLIC
+		//----------------
+
+	function getPlaylist() {
 		return playlist;
 	}
 
@@ -212,13 +225,32 @@ var Playlist = (function() {
 		NodeServer = ns;
 	}
 
+	/*From frontend*/
+
+	function updateVO(vo) {
+		_.each(playlist, function(item) {
+			if (item['name'] === vo['name']) {
+				_.forIn(item, function(value, key) {
+					_.each(config.controls, function(controlProp) {
+						//allowed to change
+						if (key === controlProp) {
+							item[key] = vo[key];
+						}
+					});
+				});
+				console.log(item);
+			}
+		});
+	}
+
 	_getDefaultPlaylist();
 
 	return {
-		getPlaylist:getPlaylist,
+		getPlaylist: getPlaylist,
 		setNodeServer: setNodeServer,
 		setRequirements: setRequirements,
-		addUserVideo: addUserVideo
+		addUserVideo: addUserVideo,
+		updateVO: updateVO
 	}
 
 })();

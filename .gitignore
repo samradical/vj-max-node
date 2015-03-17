@@ -10,6 +10,7 @@ npm-debug.log
 *.flv
 
 node_modules/**/*
+app/assets/img/**/*
 app/app.nw
 app/node_modules/**/*
 app/assets/vendor/**/*
