@@ -1,13 +1,17 @@
 // app dependencies
 var App = require('../../app');
 var signals = require('signals');
+var rivets = require('rivets');
 var THUMB_WIDTH = 106;
 var THUMB_HEIGHT = 140;
 // define module
 App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _) {
 
 	Playlist.Item = Marionette.LayoutView.extend({
-		isActive:false,
+		videoDuration:undefined,
+		videoTimeRemaining:undefined,
+		rivetsModel: undefined,
+		isActive: false,
 		controls: undefined,
 		progress: undefined,
 		progressEl: undefined,
@@ -28,17 +32,20 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 			this.clickSignal = new signals.Signal();
 			this.model.on('change', this._onModelChange, this);
 			var img = this.model.get('thumbnailPath') || 'default.jpg';
-			this.templateHelpers.thumbSrc = App.Constants.PATHS.IMAGES + img;
+			this.rivetsModel = this.model.toJSON();
+			this.rivetsModel.thumbSrc = App.Constants.PATHS.IMAGES + img;
+			this.rivetsModel.progress = this._calcProgressElWidth() + 'px';
 		},
 
 		onRender: function() {
-			this.progressEl = null;
-			this._updateProgress();
+			this.binder = rivets.bind(this.el, {
+				model: this.rivetsModel
+			});
+			this.progressEl = this.$el.find('.PlaylistItem-progress')[0];
 			this._createControls();
 		},
 
-		onShow: function() {
-		},
+		onShow: function() {},
 
 		_createControls: function() {
 			this.controls = new Playlist.Controls.Main({
@@ -61,33 +68,16 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 		},
 
 		_onModelChange: function() {
-			//only if its active update
+			this.videoTimeRemaining = this.model.get('timeRemaining');
+			this.videoDuration = this.model.get('duration');
+			
 			var img = this.model.get('thumbnailPath') || 'default.jpg';
-			this.templateHelpers.thumbSrc = App.Constants.PATHS.IMAGES + img;
-			if (this.model.get('render')) {
-				this._modelChangeRender();
-			} else {
-				this._modelChangeUpdate();
-			}
-		},
+			_.forIn(this.model.toJSON(), function(val, key){
+				this.rivetsModel[key] = val;
+			}, this);
 
-		_modelChangeUpdate: function() {
-			this.progress = this._calcProgressElWidth();
-			this._updateProgress();
-		},
-
-		_modelChangeRender: function() {
-			this.render();
-		},
-
-		_updateProgress: function() {
-			if (!this.progress) {
-				return;
-			}
-			if (!this.progressEl) {
-				this.progressEl = this.$el.find('.PlaylistItem-progress')[0];
-			}
-			this.progressEl.style.width = this.progress + 'px';
+			this.rivetsModel.thumbSrc = App.Constants.PATHS.IMAGES + img;
+			this.rivetsModel.progress = this._calcProgressElWidth() + 'px';
 		},
 
 		_onClick: function() {
@@ -103,15 +93,21 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 		},
 
 		_toggleControls: function() {
-			if(!this.isActive){
+			if (!this.isActive) {
 				this.$el.addClass('is-active');
-			}else{
+			} else {
 				this.$el.removeClass('is-active');
 			}
 			this.isActive = !this.isActive;
 		},
 
 		onDestroy: function() {
+			this.progressEl = null;
+			this.rivetsModel = null;
+			if (this.binder){
+				this.binder.unbind();
+				this.binder = null;
+			} 
 			this.clickSignal.dispose();
 			this.clickSignal = null;
 		}

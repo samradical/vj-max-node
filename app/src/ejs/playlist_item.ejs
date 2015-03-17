@@ -1,10 +1,10 @@
 <div class="PlaylistItem">
-	<img src="<%=thumbSrc%>">
-	<div class="PlaylistItem-progress"></div>
+	<img rv-src="model.thumbSrc">
+	<div rv-width="model.progress" class="PlaylistItem-progress"></div>
 	<div class="PlaylistItem-info">
-		<div><%=name%></div>
-		<div>type:<%=type%></div>
-		<div>loops:<%=loops%></div>
+		<div>{model.name}</div>
+		<div>type:{model.type}</div>
+		<div>loops:{model.loops}</div>
 	</div>
 	<div id="controls-region"></div>
 </div>

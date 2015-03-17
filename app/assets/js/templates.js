@@ -49,15 +49,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="PlaylistItem">\n\t<img src="' +
-((__t = (thumbSrc)) == null ? '' : __t) +
-'">\n\t<div class="PlaylistItem-progress"></div>\n\t<div class="PlaylistItem-info">\n\t\t<div>' +
-((__t = (name)) == null ? '' : __t) +
-'</div>\n\t\t<div>type:' +
-((__t = (type)) == null ? '' : __t) +
-'</div>\n\t\t<div>loops:' +
-((__t = (loops)) == null ? '' : __t) +
-'</div>\n\t</div>\n\t<div id="controls-region"></div>\n</div>';
+__p += '<div class="PlaylistItem">\n\t<img rv-src="model.thumbSrc">\n\t<div rv-width="model.progress" class="PlaylistItem-progress"></div>\n\t<div class="PlaylistItem-info">\n\t\t<div>{model.name}</div>\n\t\t<div>type:{model.type}</div>\n\t\t<div>loops:{model.loops}</div>\n\t</div>\n\t<div id="controls-region"></div>\n</div>';
 
 }
 return __p

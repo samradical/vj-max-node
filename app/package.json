@@ -24,7 +24,8 @@
 		"datgui": "./assets/vendor/dat-gui/build/dat.gui.min.js",
 		"backboneRouting": "./assets/vendor/backbone-query-parameters/backbone.queryparams.js",
 		"q": "./assets/vendor/q/q.js",
-		"signals": "./assets/vendor/signals/dist/signals.min.js"
+		"signals": "./assets/vendor/signals/dist/signals.min.js",
+		"rivets": "./assets/vendor/rivets/dist/rivets.bundled.min.js"
 	},
 	"browserify": {
 		"transform": [
@@ -37,6 +38,9 @@
 		"datgui": "global:datgui",
 		"signals": {
 			"exports": "signals"
+		},
+		"rivets": {
+			"exports": "rivets"
 		},
 		"imagesloaded": {
 			"exports": "IMG",

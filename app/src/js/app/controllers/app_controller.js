@@ -1,5 +1,6 @@
 // app dependencies
 var App = require('../app');
+var rivets = require('rivets');
 
 // define module
 App.module('AppController', function(AppController, App, Backbone, Marionette, $, _) {
@@ -19,6 +20,13 @@ App.module('AppController', function(AppController, App, Backbone, Marionette, $
 		},
 
 		onPreloaded: function() {
+			rivets.binders.src = function(el, value){
+				el.src = value;
+			};
+			rivets.binders.width = function(el, value){
+				el.style.width = value;
+			};
+
 			this.createViews();
 		},
 
