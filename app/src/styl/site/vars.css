@@ -46,10 +46,21 @@ NAV = 3
   --color-pinterest:         #cd2227;
   --color-text-dark:         #333b41;
 
+  /* maxmodules */
+  --maxmodule-height:     50px;
   /* playlist */
   --playlistitem-thumbwidth:     140px;
   --playlistitem-height:     106px;
   --playlistitem-progresscolor:     #b4497e;
+
+  /* search */
+  --search-bgcolor:     #9EAB7D;
+  --search-textcolor:   #DCD3F5;
+  --search-height:     50px;
+  --search-controlsbgcolor:     #5983A8;
+  --search-submitbgcolor:     #5CE06B;
+  --search-submitoverbgcolor:     #E05CD1;
+  --search-controlsheight:     150px;
 
   /* playlist controls */
   --playlistitem-loopcontrolscolor:     #3A5C4B;
@@ -77,6 +88,9 @@ NAV = 3
   --fs-playlist-info: 14px;
   --fs-playlist-controls: 12px;
   --fs-playlist-controlsicon: 26px;
+
+  --fs-search: 26px;
+  --fs-searchbutton: 14px;
 
   /* media queries: big breakpoints */
   breakpoint---small:     screen and (min-width: 38em);

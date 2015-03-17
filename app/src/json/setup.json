@@ -4,7 +4,10 @@
 			"width": "20%"
 		},
 		"views": [{
-			"module":"MaxModules",
+			"module": "MaxModules",
+			"package": "Collection"
+		}, {
+			"module": "Search",
 			"package": "Collection"
 		}]
 	}, {
@@ -12,12 +15,23 @@
 			"width": "40%"
 		},
 		"views": [{
-			"module":"Playlist",
+			"module": "Playlist",
 			"package": "Collection"
 		}]
 	}, {
 		"style": {
 			"width": "30%"
 		}
+	}],
+
+	"search": [{
+		"type": "vine",
+		"active": true
+	}, {
+		"type": "youtube",
+		"active": true
+	}, {
+		"type": "instagram",
+		"active": false
 	}]
 }

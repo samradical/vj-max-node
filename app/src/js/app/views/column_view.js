@@ -38,7 +38,7 @@ App.module('Views', function(Views, App, Backbone, Marionette, $, _) {
 			var regions = this.$el.find('.' + COL_VIEW_CLASS);
 			//not the view index
 			_.each(regions, function(el, i) {
-				var region = App.Constants.REGIONS['COLUMN_VIEW_' + this.columIndex + '_' + i] = "";
+				var region = App.Constants.REGIONS['COLUMN_VIEW_' + this.columIndex + '_' + i] = el.id;
 				App.Regions.add(App.Constants.REGIONS['COLUMN_VIEW_' + this.columIndex + '_' + i], '#' + el.id);
 			}, this);
 		},

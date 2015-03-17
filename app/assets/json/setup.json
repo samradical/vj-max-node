@@ -1,1 +1,1 @@
-{"columns":[{"style":{"width":"20%"},"views":[{"module":"MaxModules","package":"Collection"}]},{"style":{"width":"40%"},"views":[{"module":"Playlist","package":"Collection"}]},{"style":{"width":"30%"}}]}
+{"columns":[{"style":{"width":"20%"},"views":[{"module":"MaxModules","package":"Collection"},{"module":"Search","package":"Collection"}]},{"style":{"width":"40%"},"views":[{"module":"Playlist","package":"Collection"}]},{"style":{"width":"30%"}}],"search":[{"type":"vine","active":true},{"type":"youtube","active":true},{"type":"instagram","active":false}]}

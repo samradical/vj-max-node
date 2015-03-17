@@ -15,11 +15,13 @@ App.addInitializer(function() {
 	require('./common/constants');
 
 	//view controllers
+	require('./controllers/search/search_controller');
 	require('./controllers/max_modules/max_modules_controller');
 	require('./controllers/playlist/playlist_controller');
 
 	// entities
-	require('./entities/setup_entity');
+	require('./entities/column_entity');
+	require('./entities/search/search_entity');
 	require('./entities/max_module/max_module_fetcher');
 	require('./entities/max_module/max_module_entity');
 	require('./entities/playlist/playlist_entity');
@@ -27,6 +29,7 @@ App.addInitializer(function() {
 	require('./regions/app_regions');
 
 	//views
+	require('./views/search/search_view');
 	require('./views/max_modules/max_modules_view');
 	require('./views/playlist/playlist_item_controls');
 	require('./views/playlist/playlist_view');

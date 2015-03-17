@@ -20,7 +20,9 @@ App.module('Constants', function(Constants, App, Backbone, Marionette, $, _) {
 			PRELOADED:'events:preloaded',
 			/*PLAYLIST*/
 			SET_PLAYLIST:'events:set:playlist',
-			PLAYLIST_UPDATE_VO:'events:playlist:update:vo'
+			PLAYLIST_UPDATE_VO:'events:playlist:update:vo',
+			/*SEARCH*/
+			SEARCH_VINE_TAG:'events:search:vine:tag'
 		},
 
 		REGIONS: {
@@ -31,7 +33,8 @@ App.module('Constants', function(Constants, App, Backbone, Marionette, $, _) {
 		},
 
 		REQRES: {
-			SETUP: 'reqres:setup',
+			COLUMN_CONFIG: 'reqres:column:config',
+			SEARCH_CONFIG: 'reqres:setup:config',
 			PLAYLIST: 'reqres:playlist',
 			MAX_PATCHES: 'reqres:maxpatches'
 		}

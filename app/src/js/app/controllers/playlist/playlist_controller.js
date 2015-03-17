@@ -29,7 +29,6 @@ App.module('Controllers', function(Controllers, App, Backbone, Marionette, $, _)
 
 		updateServerVO:function(model){
 			var vo = model.toJSON();
-			console.log(vo);
 			if(IS_APP){
 				Controllers.Server.updateVO(vo);
 			}else{

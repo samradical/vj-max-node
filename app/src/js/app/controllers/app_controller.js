@@ -16,18 +16,37 @@ App.module('AppController', function(AppController, App, Backbone, Marionette, $
 
 		preload: function() {
 			var self = this;
-			App.request(App.Constants.REQRES.SETUP).then(function(setupCollection){
+			var loaders = [App.Constants.REQRES.COLUMN_CONFIG, App.Constants.REQRES.SEARCH_CONFIG];
+			App.Utils.requestEntities(loaders).then(function() {
 				self.onPreloaded();
 			}).done();
-			//maybe need to load assets
-			//this.onPreloaded();
 		},
 
 		onPreloaded: function() {
-			rivets.binders.src = function(el, value){
+
+			rivets.binders.input = {
+				publishes: true,
+				bind: function(el) {
+					adapter = this.config.adapters[this.key.interface]
+					model = this.model
+					keypath = this.keypath
+
+					this.callback = function() {
+						value = adapter.read(model, keypath)
+						adapter.publish(model, keypath, !value)
+					}
+					el.addEventListener('input', this.publish);
+				},
+				unbind: function(el) {
+					el.removeEventListener('input', this.publish);
+				},
+				routine: rivets.binders.value.routine
+			};
+
+			rivets.binders.src = function(el, value) {
 				el.src = value;
 			};
-			rivets.binders.width = function(el, value){
+			rivets.binders.width = function(el, value) {
 				el.style.width = value;
 			};
 
