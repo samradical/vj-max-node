@@ -15,8 +15,12 @@ App.module('AppController', function(AppController, App, Backbone, Marionette, $
 		},
 
 		preload: function() {
+			var self = this;
+			App.request(App.Constants.REQRES.SETUP).then(function(setupCollection){
+				self.onPreloaded();
+			}).done();
 			//maybe need to load assets
-			this.onPreloaded();
+			//this.onPreloaded();
 		},
 
 		onPreloaded: function() {

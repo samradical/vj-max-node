@@ -31,6 +31,7 @@ App.module('Constants', function(Constants, App, Backbone, Marionette, $, _) {
 		},
 
 		REQRES: {
+			SETUP: 'reqres:setup',
 			PLAYLIST: 'reqres:playlist',
 			MAX_PATCHES: 'reqres:maxpatches'
 		}

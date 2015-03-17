@@ -19,6 +19,7 @@ App.addInitializer(function() {
 	require('./controllers/playlist/playlist_controller');
 
 	// entities
+	require('./entities/setup_entity');
 	require('./entities/max_module/max_module_fetcher');
 	require('./entities/max_module/max_module_entity');
 	require('./entities/playlist/playlist_entity');
@@ -30,6 +31,7 @@ App.addInitializer(function() {
 	require('./views/playlist/playlist_item_controls');
 	require('./views/playlist/playlist_view');
 
+	require('./views/column_view');
 	require('./views/app_view');
 	if(IS_APP){
 		require('./controllers/server_controller');

@@ -41,6 +41,9 @@ App.module('Views.MaxModules', function(MaxModules, App, Backbone, Marionette, $
 		},
 		onBeforeRemoveChild:function(child){
 			child.clickSignal.remove(this._onChildClicked);
+		},
+		onShow:function(){
+			App.Controllers.MaxModules.instance.setView(this);
 		}
 	});
 });

@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 	connectHistoryApiFallback = require('connect-history-api-fallback'),
 	shelljs = require('shelljs'),
 	nwbuilder = require('node-webkit-builder'),
+	jsonminify = require('gulp-jsonminify'),
 	plugins = require('gulp-load-plugins')();
 
 /*var gulp = require('gulp'),
@@ -21,6 +22,7 @@ var src = './src',
 	nodeModules = './node_modules',
 	distAssets = dist + 'assets',
 	jsSrc = src + '/js/',
+	jsonSrc = src + '/json/',
 	jsIndex = 'main.js',
 	iconSrc = src + '/glyphs/svg/',
 	iconDist = distAssets+'/icons/',
@@ -209,24 +211,13 @@ gulp.task('jshint', function() {
 		.pipe(jshint.reporter('jshint-stylish'));
 });
 
-// build css using minify and autoprefixer
-/*gulp.task('css', function() {
-	gulp.src(cssSrc + cssIndex)
-		.on('error', logError)
-		.pipe(minifyCSS({
-			keepBreaks: true
-		}))
-		.pipe(rework(
-			require('rework-suit')
-		))
-		.on('error', logError)
-		.pipe(autoprefix('last 2 version', '> 1%'))
-		.on('error', logError)
-	//.pipe(rename({suffix: '.min'}))
-	.pipe(rename(cssBundle))
-		.pipe(gulp.dest(cssDist))
-		.pipe(connect.reload());
-});*/
+// jsons task
+gulp.task('jsons', function() {
+    return gulp.src([jsonSrc+'**/*'])
+        .pipe(plugins.jsonminify())
+        .pipe(gulp.dest(jsonDist))
+        .pipe(plugins.connect.reload());
+});
 
 
 //CSS LINT - ignore bundled
@@ -354,6 +345,7 @@ gulp.task('watch', function() {
 	gulp.watch(cssSrc + '**/*.{styl,css}', ['css']);
 	gulp.watch(dist + '/*.html', ['html']);
 	gulp.watch(jsSrc + '**/*.js', ['project-scripts']);
+	gulp.watch(jsonSrc + '**/*.json', ['jsons']);
 	gulp.watch(src + '/ejs/*.ejs', ['templates']);
 });
 

@@ -1,0 +1,23 @@
+{
+	"columns": [{
+		"style": {
+			"width": "20%"
+		},
+		"views": [{
+			"module":"MaxModules",
+			"package": "Collection"
+		}]
+	}, {
+		"style": {
+			"width": "40%"
+		},
+		"views": [{
+			"module":"Playlist",
+			"package": "Collection"
+		}]
+	}, {
+		"style": {
+			"width": "30%"
+		}
+	}]
+}

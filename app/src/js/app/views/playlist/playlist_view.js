@@ -132,6 +132,7 @@ App.module('Views.Playlist', function(Playlist, App, Backbone, Marionette, $, _)
 		},
 		onShow: function() {
 			App.Storage.appPlaylistWidth = this.$el.width();
+			App.Controllers.Playlist.instance.setView(this);
 		}
 	});
 });

@@ -14,6 +14,10 @@ App.module('Regions', function(Regions, App, Backbone, Marionette, $, _) {
 			this.addRegions(data);
 		}
 	});
+	
+	Regions.get = function(regionId) {
+		return Regions.instance.get(regionId);
+	};
 
 	// helpers
 	Regions.show = function(regionId, view) {

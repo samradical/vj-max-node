@@ -16,6 +16,7 @@ App.module('Controllers', function(Controllers, App, Backbone, Marionette, $, _)
 			this.view = view;
 			if(this.collection){
 				this.view.collection = this.collection;
+				this.view.render();
 			}
 		},
 		setCollection: function(collection) {

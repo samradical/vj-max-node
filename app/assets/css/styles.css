@@ -910,6 +910,23 @@ button {
   width: 30%;
 }
 
+.ColumnRegion {
+  position: relative;
+  float: left;
+  height: 100%;
+}
+
+.Column {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  background-color: #3a383d;
+  margin: 0 auto;
+  min-height: 100%;
+  overflow: hidden;
+}
+
 .MaxModules {
   position: relative;
 }

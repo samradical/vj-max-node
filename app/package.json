@@ -81,6 +81,7 @@
 		"gulp-if": "^1.2.1",
 		"gulp-jshint": "^1.6.2",
 		"gulp-minify-css": "^0.3.4",
+		"gulp-jsonminify": "0.0.1",
 		"gulp-rename": "^1.2.0",
 		"gulp-rework": "^0.2.2",
 		"gulp-streamify": "^0.0.5",

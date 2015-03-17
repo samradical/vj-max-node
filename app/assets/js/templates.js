@@ -2,7 +2,16 @@ this.JST = {"app": function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="App">\n<div class="AppMaxModulesRegion" id="max-module-region"></div>\n<div class="AppPlaylistRegion" id="playlist-region"></div>\n</div>';
+__p += '<div class="App">\n\t<!-- <div class="AppMaxModulesRegion" id="max-module-region"></div>\n\t<div class="AppPlaylistRegion" id="playlist-region"></div> -->\n</div>';
+
+}
+return __p
+},
+"column": function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="Column">\n</div>';
 
 }
 return __p
