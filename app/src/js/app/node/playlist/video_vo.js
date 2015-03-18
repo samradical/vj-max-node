@@ -1,4 +1,5 @@
 var VIDEO_VO = {
+	uid:undefined,
 	url:undefined,
 	type:undefined, //vine, youtube
 	absolutePath:undefined,

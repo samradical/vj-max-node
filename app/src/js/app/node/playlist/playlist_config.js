@@ -3,6 +3,17 @@ var PLAYLIST_CONFIG = {
 		VIDEO_ONE:'videoOne',
 		VIDEO_TWO:'videoTwo'
 	},
+	SEARCH_OPTIONS:{
+		youtube:{
+			maxResults:20,
+			maxTrendingPlaylist:3,
+			random:true
+		},
+		vine:{
+			maxResults:20,
+			random:true
+		}
+	},
 	WRITE_PLAYLIST_FILE:true,
 	PLAYLIST_FILE_DESTINATION: '/Users/samelie/Dropbox/Max/_rad/app/assets/json/',
 	UPDATE_INTERVAL:100, //milliseonds
@@ -11,7 +22,6 @@ var PLAYLIST_CONFIG = {
 	YOUTUBE_CHANNEL_KEYWORDS:'trending',
 	YOUTUBE_CHANNEL_ID:'UCBR8-60-B28hp2BmDPdntcQ',
 	YOUTUBE_QUALITY:'18',
-	YOUTUBE_MAX_TRENDING_PLAYLIST:3,
 
 	VINE_ID:'947608250487042048',
 	//DESTINATION: '/Users/Sam/Dropbox/Max/_rad/videos/vines/',

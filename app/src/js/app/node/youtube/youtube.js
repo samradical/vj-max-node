@@ -21,6 +21,7 @@ var YOUTUBE = {
 		return defer.promise;
 	},
 
+	/*returns array of items*/
 	getPlaylistItems:function(playlistId) {
 		var defer = Q.defer();
 		var count = 0;
